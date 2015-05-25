@@ -120,7 +120,7 @@ import unittest
 from fizzbuzz import fizzbuzz
 
 class FizzBuzzTest(unittest.TestCase):
-    def test_fizzbuzz_should_return_1_for_1(self):
+    def test_fizzbuzz_should_return_fizzbuzz_array(self):
         result = ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz",
             "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz", "31", "32", "Fizz", "34", "Buzz", "Fizz", "37", "38", "Fizz", "Buzz",
             "41", "Fizz", "43", "44", "FizzBuzz", "46", "47", "Fizz", "49", "Buzz", "Fizz", "52", "53", "Fizz", "Buzz", "56", "Fizz", "58", "59", "FizzBuzz",
@@ -197,6 +197,185 @@ def fizzbuzz_of_n(number):
 
 def fizzbuzz():
     return map(fizzbuzz_of_n, range(1,101))
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Lambdas introduced instead of if statements</h2>
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+
+id_ = lambda number: str(number)
+fizz_ = lambda number: "Fizz"
+buzz_ = lambda number: "Buzz"
+fizzbuzz_ = lambda number: "FizzBuzz"
+
+fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Const generation</h2>
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+
+id_ = lambda number: str(number)
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = const("FizzBuzz")
+
+fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Concat fizzbuzz</h2>
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+
+def concat(f, g):
+    return lambda number: f(number) + g(number)
+
+id_ = lambda number: str(number)
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = concat(fizz_, buzz_)
+
+fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Generated fizzbuzz array</h2>
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+
+def concat(f, g):
+    return lambda number: f(number) + g(number)
+
+def multiples_of(n):
+    return map(lambda i: i * n, range(1, 10))
+
+def substract(list_from, what_list):
+    return list(set(list_from) - set(what_list))
+
+def take(n, list):
+    return list[:n]
+
+def repeat(value, times):
+    return [value] * times
+
+def for_all(value, function):
+    return dict(zip(value, repeat(function, len(value))))
+
+def combine_dicts(*dict_args):
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
+
+multiples_of_3 = take(4, multiples_of(3))
+multiples_of_5 = take(2, multiples_of(5))
+multiples_of_both = [0]
+others = substract(range(1,15), multiples_of_3 + multiples_of_5)
+
+id_ = lambda number: str(number)
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = concat(fizz_, buzz_)
+
+fizzbuzz_lambdas = combine_dicts(
+    for_all(multiples_of_3, fizz_),
+    for_all(multiples_of_5, buzz_),
+    for_all(multiples_of_both, fizzbuzz_),
+    for_all(others, id_)
+)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Return function for readability</h2>
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+
+def concat(f, g):
+    return lambda number: f(number) + g(number)
+
+def multiples_of(n):
+    return map(lambda i: i * n, range(1, 10))
+
+def substract(list_from, what_list):
+    return list(set(list_from) - set(what_list))
+
+def take(n, list):
+    return list[:n]
+
+def repeat(value, times):
+    return [value] * times
+
+def for_all(value, function):
+    return dict(zip(value, repeat(function, len(value))))
+
+def combine_dicts(*dict_args):
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
+
+def return_(function):
+    return lambda x: function(x)
+
+multiples_of_3 = take(4, multiples_of(3))
+multiples_of_5 = take(2, multiples_of(5))
+multiples_of_both = [0]
+others = substract(range(1,15), multiples_of_3 + multiples_of_5)
+
+it_ = lambda number: str(number)
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = concat(fizz_, buzz_)
+
+fizzbuzz_lambdas = combine_dicts(
+    for_all(multiples_of_3, return_(fizz_)),
+    for_all(multiples_of_5, return_(buzz_)),
+    for_all(multiples_of_both, return_(fizzbuzz_)),
+    for_all(others, return_(it_))
+)
                 </code></pre>
             </section>
         </section>
