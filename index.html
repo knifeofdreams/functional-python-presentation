@@ -78,7 +78,7 @@
         </section>
 
         <section>
-            <p>
+            <p style="font-size:150%">
                 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz
                 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz
                 Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz
@@ -95,6 +95,7 @@
 
         <section>
             <section>
+                <h2>Basic solution</h2>
                 <pre><code data-trim>
 def fizzbuzz():
     result = []
@@ -109,11 +110,13 @@ def fizzbuzz():
             result.append(str(i))
     return result
                 </code></pre>
+                <aside class="notes"><p>Hellobello :)</p></aside>
             </section>
         </section>
 
         <section>
             <section>
+                <h2>Test it!</h2>
                 <pre><code data-trim>
 import unittest
 
@@ -121,16 +124,27 @@ from fizzbuzz import fizzbuzz
 
 class FizzBuzzTest(unittest.TestCase):
     def test_fizzbuzz_should_return_fizzbuzz_array(self):
-        result = ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz",
-            "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz", "31", "32", "Fizz", "34", "Buzz", "Fizz", "37", "38", "Fizz", "Buzz",
-            "41", "Fizz", "43", "44", "FizzBuzz", "46", "47", "Fizz", "49", "Buzz", "Fizz", "52", "53", "Fizz", "Buzz", "56", "Fizz", "58", "59", "FizzBuzz",
-            "61", "62", "Fizz", "64", "Buzz", "Fizz", "67", "68", "Fizz", "Buzz", "71", "Fizz", "73", "74", "FizzBuzz", "76", "77", "Fizz", "79", "Buzz",
-            "Fizz", "82", "83", "Fizz", "Buzz", "86", "Fizz", "88", "89", "FizzBuzz", "91", "92", "Fizz", "94", "Buzz", "Fizz", "97", "98", "Fizz", "Buzz"]
+        result = ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz",
+                "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz",
+                "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz",
+                "31", "32", "Fizz", "34", "Buzz", "Fizz", "37", "38", "Fizz", "Buzz",
+                "41", "Fizz", "43", "44", "FizzBuzz", "46", "47", "Fizz", "49", "Buzz",
+                "Fizz", "52", "53", "Fizz", "Buzz", "56", "Fizz", "58", "59", "FizzBuzz",
+                "61", "62", "Fizz", "64", "Buzz", "Fizz", "67", "68", "Fizz", "Buzz",
+                "71", "Fizz", "73", "74", "FizzBuzz", "76", "77", "Fizz", "79", "Buzz",
+                "Fizz", "82", "83", "Fizz", "Buzz", "86", "Fizz", "88", "89", "FizzBuzz",
+                "91", "92", "Fizz", "94", "Buzz", "Fizz", "97", "98", "Fizz", "Buzz"]
         self.assertEqual(result, fizzbuzz())
 
 if __name__ == '__main__':
     unittest.main()
                 </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>No for loops!</h1>
             </section>
         </section>
 
@@ -153,6 +167,12 @@ def fizzbuzz(number = 100):
 
     return fizzbuzz(number - 1) + [result]
                 </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>No if statement!</h1>
             </section>
         </section>
 
@@ -182,6 +202,25 @@ def fizzbuzz(number = 100):
 
         <section>
             <section>
+                <h2>Map instead of recursion</h2>
+                <pre><code data-trim>
+def fizzbuzz(number = 100):
+    if number < 1:
+        return []
+
+    return fizzbuzz(number - 1) + [fizzbuzz_of_n(number)]
+                </code></pre>
+
+                <pre><code data-trim>
+def fizzbuzz():
+    return map(fizzbuzz_of_n, range(1,101))
+                </code></pre>
+
+            </section>
+        </section>
+
+        <section>
+            <section>
                 <h2>Map in fizzbuzz</h2>
                 <pre><code data-trim>
 def fizzbuzz_of_n(number):
@@ -203,7 +242,32 @@ def fizzbuzz():
 
         <section>
             <section>
-                <h2>Lambdas introduced instead of if statements</h2>
+                <h1>Lambdas... lambdas everywhere</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+id_ = lambda number: str(number)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+id_ = lambda number: str(number)
+fizz_ = lambda number: "Fizz"
+buzz_ = lambda number: "Buzz"
+fizzbuzz_ = lambda number: "FizzBuzz"
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Lambdas everywhere!</h2>
                 <pre><code data-trim>
 def fizzbuzz():
     return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
@@ -213,7 +277,39 @@ fizz_ = lambda number: "Fizz"
 buzz_ = lambda number: "Buzz"
 fizzbuzz_ = lambda number: "FizzBuzz"
 
-fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+fizzbuzz_lambdas = [
+                    fizzbuzz_, id_, id_, fizz_, id_,
+                    buzz_, fizz_, id_, id_, fizz_,
+                    buzz_, id_, fizz_, id_, id_
+                    ]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def const(constant):
+    def return_const(x):
+        return lambda number: x
+    return return_const(constant)
+
+id_ = lambda number: str(number)
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = const("FizzBuzz")
+
                 </code></pre>
             </section>
         </section>
