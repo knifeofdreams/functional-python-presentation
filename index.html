@@ -288,6 +288,12 @@ fizzbuzz_lambdas = [
 
         <section>
             <section>
+                <h1>Redundancy</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
                 <pre><code data-trim>
 def const(constant):
     def return_const(x):
@@ -331,7 +337,49 @@ fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = const("FizzBuzz")
 
-fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+fizzbuzz_lambdas = [
+                    fizzbuzz_, id_, id_, fizz_, id_,
+                    buzz_, fizz_, id_, id_, fizz_,
+                    buzz_, id_, fizz_, id_, id_
+                    ]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>We're not repeating ourselves... right?</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = const("FizzBuzz")
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def concat(f, g):
+    return lambda number: f(number) + g(number)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def concat(f, g):
+    return lambda number: f(number) + g(number)
+
+fizz_ = const("Fizz")
+buzz_ = const("Buzz")
+fizzbuzz_ = concat(fizz_, buzz_)
                 </code></pre>
             </section>
         </section>
@@ -356,7 +404,11 @@ fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = concat(fizz_, buzz_)
 
-fizzbuzz_lambdas = [fizzbuzz_, id_, id_, fizz_, id_, buzz_, fizz_, id_, id_, fizz_, buzz_, id_, fizz_, id_, id_]
+fizzbuzz_lambdas = [
+                    fizzbuzz_, id_, id_, fizz_, id_,
+                    buzz_, fizz_, id_, id_, fizz_,
+                    buzz_, id_, fizz_, id_, id_
+                    ]
                 </code></pre>
             </section>
         </section>
