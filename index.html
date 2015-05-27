@@ -825,163 +825,22 @@ def take(n, generator):
             </aside>
         </section>
 
-
         <section>
-            <section>
-                <h2>Extract get_fizz_buzz</h2>
-                <pre><code data-trim>
-def fizzbuzz(n = 100):
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
-)
-                </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Extract get_fizz_buzz</h2>
-                <pre><code data-trim>
-import itertools
-
-def fizzbuzz(n = 100):
-    return map(
-        get_fizzbuzz_for, range(1,n + 1)
-    )
-
-def get_fizzbuzz_for(number):
-    return fizzbuzz_lambdas[number % 15](number)
-               </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Fizzbuzz generator extracted</h2>
-                <pre><code data-trim>
-import itertools
-
-def fizzbuzz(n = 100):
-    return take(n, fizzbuzz_generator())
-
-def fizzbuzz_generator():
-    return itertools.imap(lambda function, i: function(i), itertools.cycle(fizzbuzz_lambdas.values()), itertools.count(1,1))
-
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [15]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-                </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Final result</h2>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Helper functions</h2>
-                <pre><code data-trim>
-import itertools
-
-def fizzbuzz_generator():
-    return itertools.imap(lambda function, i: function(i), itertools.cycle(fizzbuzz_lambdas.values()), itertools.count(1,1))
-
-def const(constant):
-    return lambda number: constant
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
-
-def multiples_of(n):
-    return itertools.count(n, n)
-
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
-
-def take(n, generator):
-    return list(itertools.islice(generator, 0, n))
-
-def repeat(value, times):
-    return [value] * times
-
-def for_all(value, function):
-    return dict(zip(value, repeat(function, len(value))))
-
-def combine_two_dicts(lhs, rhs):
-    result = lhs.copy()
-    result.update(rhs)
-    return result
-
-def combine_dicts(*dict_args):
-    return reduce(combine_two_dicts, dict_args, {})
-
-def return_(x):
-    return x
-                </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Fizzbuzz logic</h2>
-                <pre><code data-trim>
-def fizzbuzz(n = 100):
-    return take(n, fizzbuzz_generator())
-
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [15]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
-fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, return_(fizz_)),
-    for_all(multiples_of_5, return_(buzz_)),
-    for_all(multiples_of_both, return_(fizzbuzz_)),
-    for_all(others, return_(it_))
-)
-                </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
                 <h2>Don't try this at home</h2>
-                <table style="border: solid 0px;">
-                    <tr>
-                        <td valign="bottom">
-                            <ul>
-                                <li>Inefficient memory usage</li>
-                                <li>Slow</li>
-                                <li>Building your own toolset</li>
-                                <li>Readability issues</li>
-                            </ul>
-                        </td>
-                        <td style="border: solid 0px;">
-                            <img src="danger.jpg" alt="Danger" height="300">
-                        </td>
-                    </tr>
-
-                </table>
-            </section>
+            <p>Inefficient memory usage</p>
+            <p>Slow</p>
+            <p>Building your own toolset</p>
+            <p>Readability issues</p>
+            <img src="danger.jpg" alt="Danger" height="200">
         </section>
 
         <section>
             <section>
                 <h2>Try this at home</h2>
-                <ul>
-                    <li>Different mindset</li>
-                    <li>Good practises (no side effects, built-in functions)</li>
-                    <li>Multithreading</li>
-                    <li>Bigger toolset == improved problem solving</li>
-                </ul>
+                    <p>Different mindset</p>
+                    <p>Good practises (no side effects, built-in functions)</p>
+                    <p>Multithreading</p>
+                    <p>Bigger toolset == improved problem solving</p>
             </section>
         </section>
 
