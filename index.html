@@ -95,7 +95,7 @@
 
         <section>
             <section>
-                <h2>Basic solution</h2>
+                <h2>Trivial solution</h2>
                 <pre><code data-trim>
 def fizzbuzz():
     result = []
@@ -347,7 +347,7 @@ fizzbuzz_lambdas = [
 
         <section>
             <section>
-                <h1>We're not repeating ourselves... right?</h1>
+                <h1>We're not repeating repeating ourselves... right?</h1>
             </section>
         </section>
 
@@ -414,34 +414,102 @@ fizzbuzz_lambdas = [
 
         <section>
             <section>
-                <h2>Generated fizzbuzz array</h2>
+                <h1>Can we do better?</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
                 <pre><code data-trim>
-def fizzbuzz():
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+fizzbuzz_lambdas = [
+                        fizzbuzz_, id_, id_, fizz_, id_,
+                        buzz_, fizz_, id_, id_, fizz_,
+                        buzz_, id_, fizz_, id_, id_
+                    ]
+                </code></pre>
+            </section>
+        </section>
 
-def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
-
+        <section>
+            <section>
+                <pre><code data-trim>
 def multiples_of(n):
     return map(lambda i: i * n, range(1, 10))
+                </code></pre>
 
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
+                <pre><code data-trim>
+multiples_of(3)
+[3, 6, 9, 12, 15, 18, 21, 24, 27]
+                </code></pre>
 
+
+                <pre><code data-trim>
+multiples_of(5)
+[5, 10, 15, 20, 25, 30, 35, 40, 45]
+                </code></pre>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def take(n, list):
+    return list[:n]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
 def take(n, list):
     return list[:n]
 
+multiples_of_3 = take(4, multiples_of(3))
+[3, 6, 9, 12]
+
+multiples_of_5 = take(2, multiples_of(5))
+[5, 10]
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+def substract(list_from, what_list):
+    return list(set(list_from) - set(what_list))
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
+multiples_of_3 = take(4, multiples_of(3))
+multiples_of_5 = take(2, multiples_of(5))
+multiples_of_both = [0]
+others = substract(range(1,15), multiples_of_3 + multiples_of_5)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <pre><code data-trim>
 def repeat(value, times):
     return [value] * times
 
 def for_all(value, function):
     return dict(zip(value, repeat(function, len(value))))
+                </code></pre>
+            </section>
+        </section>
 
+        <section>
+            <section>
+                <pre><code data-trim>
 def combine_two_dicts(lhs, rhs):
     result = lhs.copy()
     result.update(rhs)
@@ -449,17 +517,13 @@ def combine_two_dicts(lhs, rhs):
 
 def combine_dicts(*dict_args):
     return reduce(combine_two_dicts, dict_args, {})
+                </code></pre>
+            </section>
+        </section>
 
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [0]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-id_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
+        <section>
+            <section>
+                <pre><code data-trim>
 fizzbuzz_lambdas = combine_dicts(
     for_all(multiples_of_3, fizz_),
     for_all(multiples_of_5, buzz_),
@@ -467,6 +531,19 @@ fizzbuzz_lambdas = combine_dicts(
     for_all(others, id_)
 )
                 </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <p>
+                    fizzbuzz<span style="opacity: 0.5;">_lambdas = combine_dicts(</span><br>
+                        for_all<span style="opacity: 0.5;">(</span>multiples_of_3, fizz_<span style="opacity: 0.5;">),</span><br>
+                        for_all<span style="opacity: 0.5;">(</span>multiples_of_5, buzz_<span style="opacity: 0.5;">),</span><br>
+                        for_all<span style="opacity: 0.5;">(</span>multiples_of_both, fizzbuzz_<span style="opacity: 0.5;">),</span><br>
+                        for_all<span style="opacity: 0.5;">(</span>others, id_<span style="opacity: 0.5;">)</span><br>
+                    <span style="opacity: 0.5;">)</span>
+                </p>
             </section>
         </section>
 
