@@ -399,21 +399,30 @@ fizzbuzz_ = const("FizzBuzz")
             <img src="scared-cat.jpg" height="300">
             <aside class="notes">
                 <p>Terrible ugly duplication.</p>
+                <p>What a hack!</p>
                 <p>Fight it with iron fist!</p>
             </aside>
         </section>
 
         <section>
-            <section>
+            <h2>I heard you like functions...</h2>
                 <pre><code data-trim>
 def concat(f, g):
     return lambda number: f(number) + g(number)
+
+
+
+.
                 </code></pre>
-            </section>
+
+            <aside class="notes">
+                <p>I heard you like functions.</p>
+                <p>So here is a function that takes functions and returns you another function.</p>
+            </aside>
         </section>
 
         <section>
-            <section>
+            <h2>I heard you like functions...</h2>
                 <pre><code data-trim>
 def concat(f, g):
     return lambda number: f(number) + g(number)
@@ -422,11 +431,9 @@ fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = concat(fizz_, buzz_)
                 </code></pre>
-            </section>
         </section>
 
         <section>
-            <section>
                 <h2>Concat fizzbuzz</h2>
                 <pre><code data-trim>
 def fizzbuzz():
@@ -449,17 +456,22 @@ fizzbuzz_lambdas = [
     buzz_, id_, fizz_, id_, id_
 ]
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>It's started to look like some actual code!</p>
+                <p>Finally!</p>
+            </aside>
         </section>
 
         <section>
-            <section>
                 <h1>Can we do better?</h1>
-            </section>
         </section>
 
         <section>
-            <section>
+            <img src="yes-we-can.jpg" height="450">
+        </section>
+
+        <section>
+            <h2>Typed manually!</h2>
                 <pre><code data-trim>
 fizzbuzz_lambdas = [
                         fizzbuzz_, id_, id_, fizz_, id_,
@@ -467,41 +479,28 @@ fizzbuzz_lambdas = [
                         buzz_, id_, fizz_, id_, id_
                     ]
                 </code></pre>
-            </section>
         </section>
 
         <section>
-            <section>
+            <img src="e12f29127a72de73e8921ccf3c3993ea.jpg">
+        </section>
+
+        <section>
+            <h2>Helper functions</h2>
                 <pre><code data-trim>
 def multiples_of(n):
     return map(lambda i: i * n, range(1, 10))
-                </code></pre>
 
-                <pre><code data-trim>
 multiples_of(3)
 [3, 6, 9, 12, 15, 18, 21, 24, 27]
-                </code></pre>
 
-
-                <pre><code data-trim>
 multiples_of(5)
 [5, 10, 15, 20, 25, 30, 35, 40, 45]
                 </code></pre>
-            </section>
-        </section>
-
-
-        <section>
-            <section>
-                <pre><code data-trim>
-def take(n, list):
-    return list[:n]
-                </code></pre>
-            </section>
         </section>
 
         <section>
-            <section>
+            <h2>Helper functions</h2>
                 <pre><code data-trim>
 def take(n, list):
     return list[:n]
@@ -512,27 +511,32 @@ multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))
 [5, 10]
                 </code></pre>
-            </section>
         </section>
 
         <section>
-            <section>
+            <h2>Helper functions</h2>
                 <pre><code data-trim>
 def substract(list_from, what_list):
     return list(set(list_from) - set(what_list))
+
+substract([1,2,3],[3,4,5])
+[1, 2]
                 </code></pre>
             </section>
         </section>
 
         <section>
-            <section>
+            <h2>Generated subsets</h2>
                 <pre><code data-trim>
 multiples_of_3 = take(4, multiples_of(3))
+# [3, 6, 9, 12]
 multiples_of_5 = take(2, multiples_of(5))
+# [5, 10]
 multiples_of_both = [0]
+# [0]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
+# [1, 2, 4, 7, 8, 11, 13, 14]
                 </code></pre>
-            </section>
         </section>
 
         <section>
