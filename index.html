@@ -492,10 +492,10 @@ def multiples_of(n):
     return map(lambda i: i * n, range(1, 10))
 
 multiples_of(3)
-# [3, 6, 9, 12, 15, 18, 21, 24, 27]
+[3, 6, 9, 12, 15, 18, 21, 24, 27]
 
 multiples_of(5)
-# [5, 10, 15, 20, 25, 30, 35, 40, 45]
+[5, 10, 15, 20, 25, 30, 35, 40, 45]
                 </code></pre>
         </section>
 
@@ -506,10 +506,10 @@ def take(n, list):
     return list[:n]
 
 multiples_of_3 = take(4, multiples_of(3))
-# [3, 6, 9, 12]
+[3, 6, 9, 12]
 
 multiples_of_5 = take(2, multiples_of(5))
-# [5, 10]
+[5, 10]
                 </code></pre>
         </section>
 
@@ -520,7 +520,7 @@ def substract(list_from, what_list):
     return list(set(list_from) - set(what_list))
 
 substract([1,2,3],[3,4,5])
-# [1, 2]
+[1, 2]
                 </code></pre>
             </section>
         </section>
@@ -529,13 +529,13 @@ substract([1,2,3],[3,4,5])
             <h2>Generated subsets</h2>
                 <pre><code data-trim>
 multiples_of_3 = take(4, multiples_of(3))
-# [3, 6, 9, 12]
+[3, 6, 9, 12]
 multiples_of_5 = take(2, multiples_of(5))
-# [5, 10]
+[5, 10]
 multiples_of_both = [0]
-# [0]
+[0]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-# [1, 2, 4, 7, 8, 11, 13, 14]
+[1, 2, 4, 7, 8, 11, 13, 14]
                 </code></pre>
         </section>
 
@@ -543,10 +543,10 @@ others = substract(range(1,15), multiples_of_3 + multiples_of_5)
             <h2>Zip it up!</h2>
                 <pre><code data-trim>
 zip([1, 2, 3], ['a', 'b', 'c'])
-# [(1, 'a'), (2, 'b'), (3, 'c')]
+[(1, 'a'), (2, 'b'), (3, 'c')]
 
 dict(zip([1, 2, 3], ['a', 'b', 'c']))
-# {1: 'a', 2: 'b', 3: 'c'}
+{1: 'a', 2: 'b', 3: 'c'}
                 </code></pre>
         </section>
 
@@ -554,10 +554,10 @@ dict(zip([1, 2, 3], ['a', 'b', 'c']))
             <h2>Zip it up!</h2>
                 <pre><code data-trim>
 zip([3, 6, 9, 12], [fizz_, fizz_, fizz_, fizz_])
-# [(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
+[(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
 
 dict(zip([3, 6, 9, 12], [fizz_, fizz_, fizz_, fizz_]))
-# {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
+{9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
                 </code></pre>
         </section>
 
@@ -568,7 +568,7 @@ def repeat(value, times):
     return [value] * times
 
 repeat(4,7)
-# [4, 4, 4, 4, 4, 4, 4]
+[4, 4, 4, 4, 4, 4, 4]
                 </code></pre>
         </section>
 
@@ -576,10 +576,10 @@ repeat(4,7)
             <h2>Zip it up!</h2>
                 <pre><code data-trim>
 zip([3, 6, 9, 12], repeat(fizz_, 4))
-# [(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
+[(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
 
 dict(zip([3, 6, 9, 12], repeat(fizz_, 4)))
-# {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
+{9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
                 </code></pre>
         </section>
 
@@ -587,10 +587,10 @@ dict(zip([3, 6, 9, 12], repeat(fizz_, 4)))
             <h2>Generalize the solution</h2>
                 <pre><code data-trim>
 zip([3, 6, 9, 12], repeat(fizz_, 4))
-# [(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
+[(3, fizz_), (6, fizz_), (9, fizz_), (12, fizz_)]
 
 dict(zip([3, 6, 9, 12], repeat(fizz_, 4)))
-# {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
+{9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
 
 def for_all(value, function):
     return dict(zip(value, repeat(function, len(value))))
@@ -601,13 +601,13 @@ def for_all(value, function):
             <h2>So we have our dictionaries</h2>
                 <pre><code data-trim>
 for_all(multiples_of_3, fizz_)
-# {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
+{9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
 
 for_all(multiples_of_5, buzz_)
-# {5: buzz_, 10: buzz_}
+{5: buzz_, 10: buzz_}
 
 for_all(multiples_of_both, fizzbuzz_)
-# {0: fizzbuzz_}
+{0: fizzbuzz_}
 
                 </code></pre>
         </section>
@@ -621,7 +621,7 @@ def combine_two_dicts(lhs, rhs):
     return result
 
 combine_two_dicts({9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_},{5: buzz_, 10: buzz_})
-# {3: fizz_, 5: buzz_, 6: fizz_, 9: fizz_, 10: buzz_, 12: fizz_}
+{3: fizz_, 5: buzz_, 6: fizz_, 9: fizz_, 10: buzz_, 12: fizz_}
                 </code></pre>
             <aside class="notes">
                 <p>Update is mutable, and for FP that's a big NO-NO.</p>
@@ -641,7 +641,7 @@ def combine_dicts(*dict_args):
     return reduce(combine_two_dicts, dict_args, {})
 
 combine_dicts({1: 'a'}, {2: 'b'}, {3: 'c'})
-# {1: 'a', 2: 'b', 3: 'c'}
+{1: 'a', 2: 'b', 3: 'c'}
                 </code></pre>
         </section>
 
