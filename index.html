@@ -634,22 +634,27 @@ fizzbuzz_ = concat(fizz_, buzz_)
             </section>
         </section>
 
+
         <section>
             <section>
-                <h2>First generator</h2>
+                <h2>Generators</h2>
+                <pre><code data-trim>
+def multiples_of(n):
+    return map(lambda i: i * n, range(1, 10))
+
+def take(n, list):
+    return list[:n]
+
+                </code></pre>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h2>Generators</h2>
                 <pre><code data-trim>
 import itertools
-
-def fizzbuzz(n = 100):
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
-
-def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
 
 def multiples_of(n):
     i = 0
@@ -657,107 +662,36 @@ def multiples_of(n):
         i += 1
         yield n*i
 
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
-
 def take(n, generator):
     return list(itertools.islice(generator, 0, n))
 
-def repeat(value, times):
-    return [value] * times
-
-def for_all(value, function):
-    return dict(zip(value, repeat(function, len(value))))
-
-def combine_two_dicts(lhs, rhs):
-    result = lhs.copy()
-    result.update(rhs)
-    return result
-
-def combine_dicts(*dict_args):
-    return reduce(combine_two_dicts, dict_args, {})
-
-def return_(function):
-    return lambda x: function(x)
-
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [0]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
-fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, return_(fizz_)),
-    for_all(multiples_of_5, return_(buzz_)),
-    for_all(multiples_of_both, return_(fizzbuzz_)),
-    for_all(others, return_(it_))
-)
                 </code></pre>
             </section>
         </section>
 
         <section>
             <section>
-                <h2>Itertools </h2>
+                <h2>Generators</h2>
                 <pre><code data-trim>
 import itertools
-
-def fizzbuzz(n = 100):
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
-
-def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
 
 def multiples_of(n):
     return itertools.count(n, n)
 
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
-
 def take(n, generator):
     return list(itertools.islice(generator, 0, n))
 
-def repeat(value, times):
-    return [value] * times
+                </code></pre>
+            </section>
+        </section>
 
-def for_all(value, function):
-    return dict(zip(value, repeat(function, len(value))))
 
-def combine_two_dicts(lhs, rhs):
-    result = lhs.copy()
-    result.update(rhs)
-    return result
-
-def combine_dicts(*dict_args):
-    return reduce(combine_two_dicts, dict_args, {})
-
-def return_(function):
-    return lambda x: function(x)
-
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [0]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
-fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, return_(fizz_)),
-    for_all(multiples_of_5, return_(buzz_)),
-    for_all(multiples_of_both, return_(fizzbuzz_)),
-    for_all(others, return_(it_))
+        <section>
+            <section>
+                <h2>Extract get_fizz_buzz</h2>
+                <pre><code data-trim>
+def fizzbuzz(n = 100):
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
 )
                 </code></pre>
             </section>
@@ -776,58 +710,7 @@ def fizzbuzz(n = 100):
 
 def get_fizzbuzz_for(number):
     return fizzbuzz_lambdas[number % 15](number)
-
-def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
-
-def multiples_of(n):
-    return itertools.count(n, n)
-
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
-
-def take(n, generator):
-    return list(itertools.islice(generator, 0, n))
-
-def repeat(value, times):
-    return [value] * times
-
-def for_all(value, function):
-    return dict(zip(value, repeat(function, len(value))))
-
-def combine_two_dicts(lhs, rhs):
-    result = lhs.copy()
-    result.update(rhs)
-    return result
-
-def combine_dicts(*dict_args):
-    return reduce(combine_two_dicts, dict_args, {})
-
-def return_(function):
-    return lambda x: function(x)
-
-multiples_of_3 = take(4, multiples_of(3))
-multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [0]
-others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
-fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, return_(fizz_)),
-    for_all(multiples_of_5, return_(buzz_)),
-    for_all(multiples_of_both, return_(fizzbuzz_)),
-    for_all(others, return_(it_))
-)
-                </code></pre>
+               </code></pre>
             </section>
         </section>
 
@@ -843,56 +726,10 @@ def fizzbuzz(n = 100):
 def fizzbuzz_generator():
     return itertools.imap(lambda function, i: function(i), itertools.cycle(fizzbuzz_lambdas.values()), itertools.count(1,1))
 
-def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
-
-def concat(f, g):
-    return lambda number: f(number) + g(number)
-
-def multiples_of(n):
-    return itertools.count(n, n)
-
-def substract(list_from, what_list):
-    return list(set(list_from) - set(what_list))
-
-def take(n, generator):
-    return list(itertools.islice(generator, 0, n))
-
-def repeat(value, times):
-    return [value] * times
-
-def for_all(value, function):
-    return dict(zip(value, repeat(function, len(value))))
-
-def combine_two_dicts(lhs, rhs):
-    result = lhs.copy()
-    result.update(rhs)
-    return result
-
-def combine_dicts(*dict_args):
-    return reduce(combine_two_dicts, dict_args, {})
-
-def return_(function):
-    return lambda x: function(x)
-
 multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))
 multiples_of_both = [15]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
-
-it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
-
-fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, return_(fizz_)),
-    for_all(multiples_of_5, return_(buzz_)),
-    for_all(multiples_of_both, return_(fizzbuzz_)),
-    for_all(others, return_(it_))
-)
                 </code></pre>
             </section>
         </section>
