@@ -61,6 +61,11 @@
                 <small>Created by Judit Ordog-Andrasi / <a href="http://twitter.com/knifeofdreams">@knifeofdreams</a>
                 </small>
             </p>
+            <aside class="notes">
+                <p>If you visit meetups, you probably heard of FP</p>
+                <p>At Prezi it's very in, so I wanted to know more about it myself</p>
+                <p>I'm far from professional, but I was very curious if you could do this in a primarily not func language.</p>
+            </aside>
         </section>
 
         <section>
@@ -90,11 +95,14 @@
                 Fizz 82 83 Fizz Buzz 86 Fizz 88 89 FizzBuzz
                 91 92 Fizz 94 Buzz Fizz 97 98 Fizz Buzz
             </p>
+            <aside class="notes">
+                <p>The result looks something like this.</p>
+                <p>If you want to make someone sweat on an interview, give them this. Interviewers say tha 8 out of 10 people cannot solve it or only in a crazy amount of time.</p>
+            </aside>
         </section>
 
 
         <section>
-            <section>
                 <h2>Trivial solution</h2>
                 <pre><code data-trim>
 def fizzbuzz():
@@ -110,13 +118,16 @@ def fizzbuzz():
             result.append(str(i))
     return result
                 </code></pre>
-                <aside class="notes"><p>Hellobello :)</p></aside>
-            </section>
+                <aside class="notes">
+                    <p>This is my trivial solution.</p>
+                    <p>You can solve it differently, but the majority of the first impression solutions will be like this.</p>
+                    <p>One for loop and a couple of if statements.</p>
+                    <p>You could note that I'm not printing out my results. This is intentional, I/O operations are a speacial kind of hell in FP, and I didn't want to get in that topic today.</p>
+                </aside>
         </section>
 
         <section>
-            <section>
-                <h2>Test it!</h2>
+                <h2>Unit test</h2>
                 <pre><code data-trim>
 import unittest
 
@@ -139,17 +150,22 @@ class FizzBuzzTest(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>If you know me then you'll know that I'm a huge fan of TDD.</p>
+                <p>This time I didn't use tedious TDD, I only wrote this one unit test.</p>
+                <p>At every stage of that I'm showing you today this test case was green.</p>
+            </aside>
         </section>
 
         <section>
-            <section>
                 <h1>No for loops!</h1>
-            </section>
+            <aside class="notes">
+                <p>So basically if you don't want to start from FP, you can also make relatively simple problems more interesting by using restrictions.</p>
+                <p>Like not using any for loops</p>
+            </aside>
         </section>
 
         <section>
-            <section>
                 <h2>Recursion</h2>
                 <pre><code data-trim>
 def fizzbuzz(number = 100):
@@ -167,7 +183,14 @@ def fizzbuzz(number = 100):
 
     return fizzbuzz(number - 1) + [result]
                 </code></pre>
-            </section>
+
+            <aside class="notes">
+                <p>For loop was quite a central element in this kata previously.</p>
+                <p>What's the first solution that comes to mind: maybe recursion.</p>
+                <p>There is no for loop, but we have another if statement that will stop recursion when we reach the end of our range.</p>
+                <p>We start of with a default parameter then the function calls itself with a parameter reduced by one.</p>
+                <p>This is all nice, but it's using a lot of memory, and usually it's not the best option to eat up all the stack on the machine.</p>
+            </aside>
         </section>
 
         <section>
@@ -177,31 +200,6 @@ def fizzbuzz(number = 100):
         </section>
 
         <section>
-            <section>
-                <h2>Extract fizzbuzz of n</h2>
-                <pre><code data-trim>
-def fizzbuzz_of_n(number):
-    if (number % 3 == 0 and number % 5 == 0):
-        return "FizzBuzz"
-    elif (number % 3 == 0):
-        return "Fizz"
-    elif (number % 5 == 0):
-        return "Buzz"
-    else:
-        return str(number)
-
-
-def fizzbuzz(number = 100):
-    if number < 1:
-        return []
-
-    return fizzbuzz(number - 1) + [fizzbuzz_of_n(number)]
-                </code></pre>
-            </section>
-        </section>
-
-        <section>
-            <section>
                 <h2>Map instead of recursion</h2>
                 <pre><code data-trim>
 def fizzbuzz(number = 100):
@@ -216,7 +214,10 @@ def fizzbuzz():
     return map(fizzbuzz_of_n, range(1,101))
                 </code></pre>
 
-            </section>
+            <aside class="notes">
+                <p>Another solution instead of using recusrion could be a built-it iterator function.</p>
+                <p>One is called map</p>
+            </aside>
         </section>
 
         <section>
