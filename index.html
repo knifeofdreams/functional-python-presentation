@@ -679,18 +679,18 @@ combine_dicts({1: 'a'}, {2: 'b'}, {3: 'c'})
         </section>
 
         <section>
-            <section>
                 <h2>Increase readability</h2>
                 <pre><code data-trim>
-def return_(function):
-    return lambda x: function(x)
+def return_(x):
+    return x
 
 it_ = lambda number: str(number)
-fizz_ = const("Fizz")
-buzz_ = const("Buzz")
-fizzbuzz_ = concat(fizz_, buzz_)
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>Aptly named return function.</p>
+                <p>Guess what it does.</p>
+                <p>Renamed id to it.</p>
+            </aside>
         </section>
 
         <section>
@@ -702,19 +702,19 @@ fizzbuzz_ = concat(fizz_, buzz_)
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all(multiples_of_3, return(fizz_)),</td>
+                        <td style="border: solid 0px;">for_all(multiples_of_3, return_(fizz_)),</td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all(multiples_of_5, return(buzz_)),</td>
+                        <td style="border: solid 0px;">for_all(multiples_of_5, return_(buzz_)),</td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all(multiples_of_both, return(fizzbuzz_)),</td>
+                        <td style="border: solid 0px;">for_all(multiples_of_both, return_(fizzbuzz_)),</td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all(others, return(it_))</td>
+                        <td style="border: solid 0px;">for_all(others, return_(it_))</td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
@@ -735,19 +735,19 @@ fizzbuzz_ = concat(fizz_, buzz_)
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_3, return<span style="opacity: 0.25;">(</span>fizz<span style="opacity: 0.25;">_)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_3, return<span style="opacity: 0.25;">_(</span>fizz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_5, return<span style="opacity: 0.25;">(</span>buzz<span style="opacity: 0.25;">_)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_5, return<span style="opacity: 0.25;">_(</span>buzz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_both, return<span style="opacity: 0.25;">(</span>fizzbuzz<span style="opacity: 0.25;">_)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_both, return<span style="opacity: 0.25;">_(</span>fizzbuzz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>others, return<span style="opacity: 0.25;">(</span>it<span style="opacity: 0.25;">_))</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>others, return<span style="opacity: 0.25;">_(</span>it<span style="opacity: 0.25;">_))</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
@@ -760,22 +760,26 @@ fizzbuzz_ = concat(fizz_, buzz_)
 
 
         <section>
-            <section>
                 <h2>Generators</h2>
                 <pre><code data-trim>
+.
+
 def multiples_of(n):
     return map(lambda i: i * n, range(1, 10))
 
+
+
+
 def take(n, list):
     return list[:n]
-
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>Range is a bit arbitrary.</p>
+            </aside>
         </section>
 
 
         <section>
-            <section>
                 <h2>Generators</h2>
                 <pre><code data-trim>
 import itertools
@@ -790,11 +794,16 @@ def take(n, generator):
     return list(itertools.islice(generator, 0, n))
 
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>Take has to be changed because now we use a generator instead of a list.</p>
+                <p>islice creates a finite generator from an infinite one.</p>
+                <p>list call creates a finite list from the generator. Lazy evaluation here.</p>
+                <p>We only generate values when list is called.</p>
+                <p>Oh Noes! We did it again! We used a while loop!.</p>
+            </aside>
         </section>
 
         <section>
-            <section>
                 <h2>Generators</h2>
                 <pre><code data-trim>
 import itertools
@@ -802,11 +811,18 @@ import itertools
 def multiples_of(n):
     return itertools.count(n, n)
 
+
+
+
 def take(n, generator):
     return list(itertools.islice(generator, 0, n))
 
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>Luckily we have a function for that.</p>
+                <p>Steps from a starting number by an offset.</p>
+                <p>In our case we start from n and step with an offset n.</p>
+            </aside>
         </section>
 
 
@@ -902,8 +918,8 @@ def combine_two_dicts(lhs, rhs):
 def combine_dicts(*dict_args):
     return reduce(combine_two_dicts, dict_args, {})
 
-def return_(function):
-    return lambda x: function(x)
+def return_(x):
+    return x
                 </code></pre>
             </section>
         </section>
