@@ -361,7 +361,7 @@ fizzbuzz_ = const("FizzBuzz")
 
         <section>
             <section>
-                <h2>Const generation</h2>
+                <h2>Higher order function</h2>
                 <pre><code data-trim>
 def fizzbuzz():
     return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
@@ -375,28 +375,32 @@ buzz_ = const("Buzz")
 fizzbuzz_ = const("FizzBuzz")
 
 fizzbuzz_lambdas = [
-                    fizzbuzz_, id_, id_, fizz_, id_,
-                    buzz_, fizz_, id_, id_, fizz_,
-                    buzz_, id_, fizz_, id_, id_
-                    ]
+    fizzbuzz_, id_, id_, fizz_, id_,
+    buzz_, fizz_, id_, id_, fizz_,
+    buzz_, id_, fizz_, id_, id_
+]
                 </code></pre>
             </section>
         </section>
 
         <section>
             <section>
-                <h1>We're not repeating repeating ourselves... right?</h1>
+                <h2>We're not repeating repeating ourselves... right?</h2>
             </section>
         </section>
 
         <section>
-            <section>
+            <h2>Ugly duplication!</h2>
                 <pre><code data-trim>
 fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = const("FizzBuzz")
                 </code></pre>
-            </section>
+            <img src="scared-cat.jpg" height="300">
+            <aside class="notes">
+                <p>Terrible ugly duplication.</p>
+                <p>Fight it with iron fist!</p>
+            </aside>
         </section>
 
         <section>
@@ -440,10 +444,10 @@ buzz_ = const("Buzz")
 fizzbuzz_ = concat(fizz_, buzz_)
 
 fizzbuzz_lambdas = [
-                    fizzbuzz_, id_, id_, fizz_, id_,
-                    buzz_, fizz_, id_, id_, fizz_,
-                    buzz_, id_, fizz_, id_, id_
-                    ]
+    fizzbuzz_, id_, id_, fizz_, id_,
+    buzz_, fizz_, id_, id_, fizz_,
+    buzz_, id_, fizz_, id_, id_
+]
                 </code></pre>
             </section>
         </section>
