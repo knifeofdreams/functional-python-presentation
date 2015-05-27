@@ -556,38 +556,6 @@ def combine_dicts(*dict_args):
 
         <section>
             <section>
-                <table style="border: solid 0px;">
-                    <tr>
-                        <td style="border: solid 0px;">fizzbuzz<span style="opacity: 0.25;">_lambdas =</span></td>
-                        <td style="border: solid 0px;"><span style="opacity: 0.25;">combine_dicts(</span></td>
-                    </tr>
-                    <tr>
-                        <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_3, fizz_<span style="opacity: 0.25;">),</span></td>
-                    </tr>
-                    <tr>
-                        <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_5, buzz_<span style="opacity: 0.25;">),</span></td>
-                    </tr>
-                    <tr>
-                        <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_both, fizzbuzz_<span style="opacity: 0.25;">),</span></td>
-                    </tr>
-                    <tr>
-                        <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>others, id_<span style="opacity: 0.25;">)</span></td>
-                    </tr>
-                    <tr>
-                        <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;"><span style="opacity: 0.25;">)</span></td>
-                    </tr>
-
-                </table>
-            </section>
-        </section>
-
-        <section>
-            <section>
                 <h2>Increase readability</h2>
                 <pre><code data-trim>
 def return_(function):
@@ -638,24 +606,24 @@ fizzbuzz_ = concat(fizz_, buzz_)
             <section>
                 <table style="border: solid 0px;">
                     <tr>
-                        <td style="border: solid 0px;">fizzbuzz<span style="opacity: 0.25;">_lambdas =</span></td>
+                        <td style="border: solid 0px;">fizzbuzz<span style="opacity: 0.25;">_lambdas </span>=</td>
                         <td style="border: solid 0px;"><span style="opacity: 0.25;">combine_dicts(</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_3, return<span style="opacity: 0.25;">(</span>fizz_<span style="opacity: 0.25;">)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_3, return<span style="opacity: 0.25;">(</span>fizz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_5, return<span style="opacity: 0.25;">(</span>buzz_<span style="opacity: 0.25;">)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_5, return<span style="opacity: 0.25;">(</span>buzz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_both, return<span style="opacity: 0.25;">(</span>fizzbuzz_<span style="opacity: 0.25;">)),</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>multiples_of_both, return<span style="opacity: 0.25;">(</span>fizzbuzz<span style="opacity: 0.25;">_)),</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
-                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>others, return<span style="opacity: 0.25;">(</span>it_<span style="opacity: 0.25;">))</span></td>
+                        <td style="border: solid 0px;">for_all<span style="opacity: 0.25;">(</span>others, return<span style="opacity: 0.25;">(</span>it<span style="opacity: 0.25;">_))</span></td>
                     </tr>
                     <tr>
                         <td style="border: solid 0px;"></td>
