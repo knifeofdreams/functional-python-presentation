@@ -598,7 +598,39 @@ def for_all(value, function):
         </section>
 
         <section>
-            <section>
+            <h2>So we have our dictionaries</h2>
+                <pre><code data-trim>
+for_all(multiples_of_3, fizz_)
+# {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
+
+for_all(multiples_of_5, buzz_)
+# {5: buzz_, 10: buzz_}
+
+for_all(multiples_of_both, fizzbuzz_)
+# {0: fizzbuzz_}
+
+                </code></pre>
+        </section>
+
+        <section>
+            <h2>All we need is a combine</h2>
+                <pre><code data-trim>
+def combine_two_dicts(lhs, rhs):
+    result = lhs.copy()
+    result.update(rhs)
+    return result
+
+combine_two_dicts({9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_},{5: buzz_, 10: buzz_})
+# {3: fizz_, 5: buzz_, 6: fizz_, 9: fizz_, 10: buzz_, 12: fizz_}
+                </code></pre>
+            <aside class="notes">
+                <p>Update is mutable, and for FP that's a big NO-NO.</p>
+                <p>One would be tempted to use a for loop, but we can't.</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>All we need is a combine</h2>
                 <pre><code data-trim>
 def combine_two_dicts(lhs, rhs):
     result = lhs.copy()
@@ -607,8 +639,10 @@ def combine_two_dicts(lhs, rhs):
 
 def combine_dicts(*dict_args):
     return reduce(combine_two_dicts, dict_args, {})
+
+combine_dicts({1: 'a'}, {2: 'b'}, {3: 'c'})
+# {1: 'a', 2: 'b', 3: 'c'}
                 </code></pre>
-            </section>
         </section>
 
         <section>
