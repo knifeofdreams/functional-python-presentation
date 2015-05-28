@@ -64,9 +64,8 @@
             </p>
             <aside class="notes">
                 <p>Credits to Athos</p>
-                <p>If you visit meetups, you probably heard of FP</p>
                 <p>At Prezi it's very in, so I wanted to know more about it myself</p>
-                <p>I'm far from professional, but I was very curious if you could do this in a primarily not func language.</p>
+                <p>I'm far from professional, but I was very curious, so I started to learn about it.</p>
             </aside>
         </section>
 
@@ -99,7 +98,6 @@
             </p>
             <aside class="notes">
                 <p>The result looks something like this.</p>
-                <p>If you want to make someone sweat on an interview, give them this. Interviewers say tha 8 out of 10 people cannot solve it or only in a crazy amount of time.</p>
             </aside>
         </section>
 
@@ -190,7 +188,6 @@ def fizzbuzz(number = 100):
                 <p>What's the first solution that comes to mind: maybe recursion.</p>
                 <p>There is no for loop, but we have another if statement that will stop recursion when we reach the end of our range.</p>
                 <p>We start of with a default parameter then the function calls itself with a parameter reduced by one.</p>
-                <p>This is all nice, but it's using a lot of memory, and usually it's not the best option to eat up all the stack on the machine.</p>
             </aside>
         </section>
 
@@ -216,6 +213,7 @@ def fizzbuzz(number = 100):
                 </code></pre>
 
             <aside class="notes">
+                <p>This is all nice, but it's using a lot of memory, and usually it's not the best option to eat up all the stack on the machine.</p>
                 <p>Extracting function.</p>
             </aside>
         </section>
@@ -242,7 +240,7 @@ def fizzbuzz():
                 </code></pre>
             <aside class="notes">
                 <p>Another solution instead of using recusrion could be a built-it iterator function.</p>
-                <p>One is called map</p>
+                <p>This one is called map</p>
             </aside>
         </section>
 
@@ -284,6 +282,11 @@ def fizzbuzz():
                 <pre><code data-trim>
 id_ = lambda number: str(number)
                 </code></pre>
+            <aside class="notes">
+                <p>We need a couple of helper functions.</p>
+                <p>The first one is a lambda that receives a parameter and returns the string representation of the param.</p>
+                <p>Not the most clever function, but it's gonna be very useful.</p>
+            </aside>
         </section>
 
         <section>
@@ -294,6 +297,10 @@ fizz_ = lambda number: "Fizz"
 buzz_ = lambda number: "Buzz"
 fizzbuzz_ = lambda number: "FizzBuzz"
                 </code></pre>
+            <aside class="notes">
+                <p>We are introducing other lambdas for the constants.</p>
+                <p>They are even less clever: they receive a parameter a return a constant string.</p>
+            </aside>
         </section>
 
         <section>
@@ -313,6 +320,13 @@ fizzbuzz_lambdas = [
     buzz_, id_, fizz_, id_, id_
 ]
                 </code></pre>
+            <aside class="notes">
+                <p>This is how we can use them.</p>
+                <p>We can put these lambdas into a list.</p>
+                <p>In fizzbuzz we are iterating over the same range as before, but</p>
+                <p>We execute a lambda that receives a parameter and based on the modulo of the parameter with 15</p>
+                <p>It will call a lambda from the fizzbuzz_lambdas list with the number as a parameter.</p>
+            </aside>
         </section>
 
         <section>
@@ -332,6 +346,11 @@ fizzbuzz_lambdas = [
     buzz_, id_, fizz_, id_, id_
 ]
                 </pre>
+            <aside class="notes">
+                <p>We eliminated all our if statements, but!</p>
+                <p>We have this ugly redundancy in our code!</p>
+                <p>Let's get rid of this.</p>
+            </aside>
         </section>
 
         <section>
@@ -344,6 +363,10 @@ def const(constant):
 
 .
                 </code></pre>
+            <aside class="notes">
+                <p>We can extract a function called const that return a lambda returning a constant.</p>
+                <p>This is our first high-order function.</p>
+            </aside>
         </section>
 
         <section>
@@ -357,6 +380,9 @@ buzz_ = const("Buzz")
 fizzbuzz_ = const("FizzBuzz")
 
                 </code></pre>
+            <aside class="notes">
+                <p>And this is how we can use it for our lambdas.</p>
+            </aside>
         </section>
 
         <section>
@@ -381,6 +407,9 @@ fizzbuzz_lambdas = [
 ]
                 </code></pre>
             </section>
+            <aside class="notes">
+                <p>This is how the whole code will look like.</p>
+            </aside>
         </section>
 
         <section>
@@ -431,6 +460,9 @@ fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = concat(fizz_, buzz_)
                 </code></pre>
+            <aside class="notes">
+                <p>Now we can use this concat for FizzBuzz. Pheuw.</p>
+            </aside>
         </section>
 
         <section>
@@ -497,6 +529,9 @@ multiples_of(3)
 multiples_of(5)
 [5, 10, 15, 20, 25, 30, 35, 40, 45]
                 </code></pre>
+            <aside class="notes">
+                <p>The first helper function will take a number and return its multiples on a range from 1 to 10.</p>
+            </aside>
         </section>
 
         <section>
@@ -511,6 +546,11 @@ multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))
 [5, 10]
                 </code></pre>
+            <aside class="notes">
+                <p>Take will return the first n elements of a list.</p>
+                <p>For the repetitive pattern we will need the first 4 multiples of 3 and first 2 multiples of 5.</p>
+                <p>We can generate those like this.</p>
+            </aside>
         </section>
 
         <section>
@@ -522,7 +562,9 @@ def substract(list_from, what_list):
 substract([1,2,3],[3,4,5])
 [1, 2]
                 </code></pre>
-            </section>
+            <aside class="notes">
+                <p>Substract does what it says: substracts the list from another.</p>
+            </aside>
         </section>
 
         <section>
@@ -537,6 +579,10 @@ multiples_of_both = [0]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
 [1, 2, 4, 7, 8, 11, 13, 14]
                 </code></pre>
+            <aside class="notes">
+                <p>With their help these are our subsets for the 15 element pattern.</p>
+                <p>Multiples of 3, 5, 3 and 5 and the rest.</p>
+            </aside>
         </section>
 
         <section>
@@ -548,6 +594,10 @@ zip([1, 2, 3], ['a', 'b', 'c'])
 dict(zip([1, 2, 3], ['a', 'b', 'c']))
 {1: 'a', 2: 'b', 3: 'c'}
                 </code></pre>
+            <aside class="notes">
+                <p>The next helper is zip that combines two list into the list of tuples.</p>
+                <p>It will pair the elements with the same index.</p>
+            </aside>
         </section>
 
         <section>
@@ -559,6 +609,11 @@ zip([3, 6, 9, 12], [fizz_, fizz_, fizz_, fizz_])
 dict(zip([3, 6, 9, 12], [fizz_, fizz_, fizz_, fizz_]))
 {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
                 </code></pre>
+            <aside class="notes">
+                <p>Instead of arbitrary valeus we can use a list of the multiples of three, and a list with the fuzz lambdas.</p>
+                <p>We can covert zips output into a dictionary.</p>
+                <p>A key-value store data structure.</p>
+            </aside>
         </section>
 
         <section>
@@ -570,6 +625,10 @@ def repeat(value, times):
 repeat(4,7)
 [4, 4, 4, 4, 4, 4, 4]
                 </code></pre>
+            <aside class="notes">
+                <p>We will need the repeat function.</p>
+                <p>It repeats a value as many times as the parameter says.</p>
+            </aside>
         </section>
 
         <section>
@@ -581,6 +640,10 @@ zip([3, 6, 9, 12], repeat(fizz_, 4))
 dict(zip([3, 6, 9, 12], repeat(fizz_, 4)))
 {9: fizz_, 3: fizz_, 12: fizz_, 6: fizz_}
                 </code></pre>
+            <aside class="notes">
+                <p>With using the repeat function we don't need to do as much manual work.</p>
+                <p>Here is the final dictionary for the multiples of 3 with numbers as keys and fizz lambdas as values.</p>
+            </aside>
         </section>
 
         <section>
@@ -595,6 +658,9 @@ dict(zip([3, 6, 9, 12], repeat(fizz_, 4)))
 def for_all(value, function):
     return dict(zip(value, repeat(function, len(value))))
                 </code></pre>
+            <aside class="notes">
+                <p>We can put all of this into a function which I named for all.</p>
+            </aside>
         </section>
 
         <section>
@@ -610,6 +676,14 @@ for_all(multiples_of_both, fizzbuzz_)
 {0: fizzbuzz_}
 
                 </code></pre>
+            <aside class="notes">
+                <p>We can use this for all function for every subset that we generated so far to get our dictionaries.</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>All we need is a combine!</h2>
+            <img src="148_859.jpg" height="450">
         </section>
 
         <section>
@@ -643,6 +717,10 @@ def combine_dicts(*dict_args):
 combine_dicts({1: 'a'}, {2: 'b'}, {3: 'c'})
 {1: 'a', 2: 'b', 3: 'c'}
                 </code></pre>
+            <aside class="notes">
+                <p>We can generalize and write a combine for any number of dicts.</p>
+                <p>We use reduce that will combine all the iterable objects into a single value with the function that we pass as a param.</p>
+            </aside>
         </section>
 
         <section>
@@ -676,6 +754,9 @@ combine_dicts({1: 'a'}, {2: 'b'}, {3: 'c'})
                 </table>
 
             </section>
+            <aside class="notes">
+                <p>This is almost readable.</p>
+            </aside>
         </section>
 
         <section>
@@ -724,6 +805,9 @@ it_ = lambda number: str(number)
                 </table>
 
             </section>
+            <aside class="notes">
+                <p>So with all this, this is our final result.</p>
+            </aside>
         </section>
 
         <section>
@@ -756,6 +840,10 @@ it_ = lambda number: str(number)
 
                 </table>
             </section>
+            <aside class="notes">
+                <p>If I grey out the boiler plate we basically get the definition of fizzbuzz that we saw on the first slide.</p>
+                <p>This is is quite a wow moment after all the complexity that we introduced.</p>
+            </aside>
         </section>
 
 
@@ -775,6 +863,8 @@ def take(n, list):
                 </code></pre>
             <aside class="notes">
                 <p>Range is a bit arbitrary.</p>
+                <p>Why 10? What if we used 1 million?</p>
+                <p>Eat up a lot of memory.</p>
             </aside>
         </section>
 
@@ -795,7 +885,7 @@ def take(n, generator):
 
                 </code></pre>
             <aside class="notes">
-                <p>Take has to be changed because now we use a generator instead of a list.</p>
+                <p>With this multiples of n becomes an infinite generator.</p>
                 <p>islice creates a finite generator from an infinite one.</p>
                 <p>list call creates a finite list from the generator. Lazy evaluation here.</p>
                 <p>We only generate values when list is called.</p>
