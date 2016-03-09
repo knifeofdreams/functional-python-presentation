@@ -166,6 +166,13 @@ if __name__ == '__main__':
         </section>
 
         <section>
+            <img src="recursionImage.jpeg" height=500px">
+            <aside class="notes">
+                <p>The first thing that may come to mind is recursion.</p>
+            </aside>
+        </section>
+
+        <section>
                 <h2>Recursion</h2>
                 <pre><code data-trim>
 def fizzbuzz(number = 100):
@@ -331,6 +338,13 @@ fizzbuzz_lambdas = [
         </section>
 
         <section>
+            <section>
+                <h2>We're not repeating repeating ourselves... right?</h2>
+                <img src="Dord.png" height="400">
+            </section>
+        </section>
+
+        <section>
             <h2>Redundancy</h2>
                 <pre>
 def fizzbuzz():
@@ -411,12 +425,6 @@ fizzbuzz_lambdas = [
             <aside class="notes">
                 <p>This is how the whole code will look like.</p>
             </aside>
-        </section>
-
-        <section>
-            <section>
-                <h2>We're not repeating repeating ourselves... right?</h2>
-            </section>
         </section>
 
         <section>
@@ -512,10 +520,6 @@ fizzbuzz_lambdas = [
                         buzz_, id_, fizz_, id_, id_
                     ]
                 </code></pre>
-        </section>
-
-        <section>
-            <img src="e12f29127a72de73e8921ccf3c3993ea.jpg">
         </section>
 
         <section>
@@ -913,6 +917,7 @@ def take(n, generator):
                 <p>Luckily we have a function for that.</p>
                 <p>Steps from a starting number by an offset.</p>
                 <p>In our case we start from n and step with an offset n.</p>
+                <p>We don't use a fixed size list anymore, we use an infinite. But to not eat up infinite memory, we only generate them when we use them.</p>
             </aside>
         </section>
 
@@ -930,7 +935,6 @@ def take(n, generator):
                 <h2>Try this at home</h2>
                     <p>Different mindset</p>
                     <p>Good practises (no side effects, built-in functions)</p>
-                    <p>Multithreading</p>
                     <p>Bigger toolset == improved problem solving</p>
             </section>
         </section>
